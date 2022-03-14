@@ -224,9 +224,9 @@ Status LayoutAssignment::SetBufferLayout(const Layout& layout,
     }
   } else {
     iter = buffer_constraints_
-               .insert(std::make_pair(
+               .emplace(
                    &buffer, BufferLayoutConstraint(layout, buffer, mandatory,
-                                                   dfs, priority)))
+                                                   dfs, priority))
                .first;
   }
   added_constraints_.push_back(&iter->second);

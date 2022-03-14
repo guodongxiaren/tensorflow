@@ -114,7 +114,7 @@ Compiler::GetPlatformCompilers() {
   }
 
   // And then we invoke the factory, placing the result into the mapping.
-  compilers->insert(std::make_pair(platform->id(), it->second()));
+  compilers->emplace(platform->id(), it->second());
   return compilers->at(platform->id()).get();
 }
 

@@ -122,7 +122,7 @@ Status AutoParallel::Initialize(const GrapplerItem& item) {
   }
 
   auto div_const_node = AddNodeDivConst();
-  all_nodes_.insert(std::make_pair(div_const_node->name(), div_const_node));
+  all_nodes_.emplace(div_const_node->name(), div_const_node);
   std::map<string, int> gradient_pos = {{"ApplyGradientDescent", 2},
                                         {"ApplyProximalGradientDescent", 4},
                                         {"ApplyAdadelta", 6},
@@ -142,7 +142,7 @@ Status AutoParallel::Initialize(const GrapplerItem& item) {
         apply_gradient_node_name,
         apply_gradients_node->input(gradient_pos[apply_gradients_op]),
         div_const_node->name());
-    all_nodes_.insert(std::make_pair(div_node->name(), div_node));
+    all_nodes_.emplace(div_node->name(), div_node);
     *apply_gradients_node->mutable_input(gradient_pos[apply_gradients_op]) =
         div_node->name();
   }
