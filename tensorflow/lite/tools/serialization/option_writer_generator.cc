@@ -235,7 +235,7 @@ class OpOptionData {
         std::string option_name = d->names[i];
         std::string collapsed_option_name = ToCollapsed(option_name);
         if (collapsed_option_name_guess == collapsed_option_name) {
-          op_to_option_.insert(std::make_pair(op_name, option_name));
+          op_to_option_.emplace(op_name, option_name);
           break;
         }
       }
@@ -262,7 +262,7 @@ class OpOptionData {
             std::cerr << "Failed to get param struct for option " << option_name
                       << std::endl;
           } else {
-            option_to_struct_.insert(std::make_pair(option_name, params_guess));
+            option_to_struct_.emplace(option_name, params_guess);
           }
         }
       }

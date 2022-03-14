@@ -82,13 +82,13 @@ TEST_F(FunctionalizeCondTest, JoinCondStates) {
   StateMap::CondId then_branch;
   {
     StateMap::CondState ss;
-    ss.insert(std::make_pair(OutputTensor(pred, 0), BranchType::kThenBranch));
+    ss.emplace(OutputTensor(pred, 0), BranchType::kThenBranch);
     then_branch = GetUniqueId(ss);
   }
   StateMap::CondId else_branch;
   {
     StateMap::CondState ss;
-    ss.insert(std::make_pair(OutputTensor(pred, 0), BranchType::kElseBranch));
+    ss.emplace(OutputTensor(pred, 0), BranchType::kElseBranch);
     else_branch = GetUniqueId(ss);
   }
 

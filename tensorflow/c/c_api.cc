@@ -2231,7 +2231,7 @@ void TF_AddGradientsWithPrefix(TF_Graph* g, const char* prefix, TF_Output* y,
       // to add potentially many nodes to the graph without running the checks
       // (such as uniqueness of the names of nodes) we run with other functions
       // that add a node to the graph (like TF_FinishOperation).
-      if (!g->name_map.insert(std::make_pair(n->name(), n)).second) {
+      if (!g->name_map.emplace(n->name(), n).second) {
         status->status = tensorflow::errors::Internal(
             "BUG: The API allowed construction of a graph with duplicate node "
             "names (",

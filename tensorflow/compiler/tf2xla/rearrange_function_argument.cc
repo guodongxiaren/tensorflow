@@ -186,7 +186,7 @@ Status CalculateRetvalRearrange(
     TF_RETURN_IF_ERROR(GetNodeAttr(n->def(), "T", &t));
     if (t != DT_RESOURCE) {
       int new_retval_index = retval_index_mapping->size();
-      retval_index_mapping->insert(std::make_pair(i, new_retval_index));
+      retval_index_mapping->emplace(i, new_retval_index);
       continue;
     }
 
@@ -201,7 +201,7 @@ Status CalculateRetvalRearrange(
     Node* arg = e->src();
     int src_index;
     TF_RETURN_IF_ERROR(GetNodeAttr(arg->def(), "index", &src_index));
-    resource_retval_to_arg->insert(std::make_pair(i, src_index));
+    resource_retval_to_arg->emplace(i, src_index);
   }
   return Status::OK();
 }

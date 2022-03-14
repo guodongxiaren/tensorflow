@@ -41,11 +41,11 @@ void* Init(TfLiteContext* context, const char* buffer, size_t length) {
   VarParams* params = new VarParams;
   auto* subgraph = reinterpret_cast<Subgraph*>(context->impl_);
   // Create a new entry if doesn't exist, return the existing one otherwise.
-  auto it = subgraph->resource_ids().insert(std::make_pair(
+  auto it = subgraph->resource_ids().emplace(
       std::make_pair(
           std::string(var_params->container ? var_params->container : ""),
           std::string(var_params->shared_name ? var_params->shared_name : "")),
-      static_cast<int>(subgraph->resource_ids().size())));
+      static_cast<int>(subgraph->resource_ids().size()));
   params->resource_id = it.first->second;
   return params;
 }

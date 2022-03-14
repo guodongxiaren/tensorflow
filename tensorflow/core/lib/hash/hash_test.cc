@@ -116,9 +116,9 @@ TEST(StringPieceHasher, HashMap) {
 
   std::unordered_map<StringPiece, int, StringPieceHasher> map;
 
-  map.insert(std::make_pair(p1, 0));
-  map.insert(std::make_pair(p2, 1));
-  map.insert(std::make_pair(p3, 2));
+  map.emplace(p1, 0);
+  map.emplace(p2, 1);
+  map.emplace(p3, 2);
   EXPECT_EQ(map.size(), 3);
 
   bool found[3] = {false, false, false};

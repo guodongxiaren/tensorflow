@@ -108,8 +108,8 @@ TEST(TestOpConverterBase, TestOpConverterBase) {
   (*converter)->TensorsMap().erase("input2");
   (*converter)
       ->TensorsMap()
-      .insert(std::make_pair("input2", TRT_TensorOrWeights(TRT_ShapedWeights(
-                                           nvinfer1::DataType::kFLOAT))));
+      .emplace("input2", TRT_TensorOrWeights(TRT_ShapedWeights(
+                                           nvinfer1::DataType::kFLOAT)));
 
   // With the correct input types, check that the converter is called and sets
   // one output tensor.

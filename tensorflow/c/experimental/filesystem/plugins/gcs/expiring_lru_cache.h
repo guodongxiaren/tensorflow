@@ -144,7 +144,7 @@ class ExpiringLRUCache {
       ABSL_EXCLUSIVE_LOCKS_REQUIRED(mu_) {
     lru_list_.push_front(key);
     Entry entry{timer_seconds_(), value, lru_list_.begin()};
-    auto insert = cache_.insert(std::make_pair(key, entry));
+    auto insert = cache_.emplace(key, entry);
     if (!insert.second) {
       lru_list_.erase(insert.first->second.lru_iterator);
       insert.first->second = entry;

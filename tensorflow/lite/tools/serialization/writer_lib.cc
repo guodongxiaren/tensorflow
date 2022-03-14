@@ -331,7 +331,7 @@ TfLiteStatus SubgraphWriter::RegisterCustomWriter(
   if (custom_op_to_writer_.find(custom_name) != custom_op_to_writer_.end()) {
     return kTfLiteError;
   }
-  custom_op_to_writer_.insert(std::make_pair(custom_name, custom_writer));
+  custom_op_to_writer_.emplace(custom_name, custom_writer);
   return kTfLiteOk;
 }
 

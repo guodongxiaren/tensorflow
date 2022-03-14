@@ -134,7 +134,7 @@ std::vector<const HloInstruction*> GetAuxiliaryLoopInductionVars(
       it->second = nullptr;
       VLOG(2) << "two extractions at same index:" << indx_instr->ToString();
     } else {
-      extractions.insert(std::make_pair(indx_instr->tuple_index(), indx_instr));
+      extractions.emplace(indx_instr->tuple_index(), indx_instr);
       VLOG(2) << "inserting extraction :" << indx_instr->ToString();
     }
   }
@@ -158,7 +158,7 @@ std::vector<const HloInstruction*> GetAuxiliaryLoopInductionVars(
         it->second = nullptr;
         VLOG(2) << "two insertions at same index:" << operand->ToString();
       } else {
-        insertions.insert(std::make_pair(index, operand));
+        insertions.emplace(index, operand);
         VLOG(2) << "inserting insertions:" << operand->ToString();
       }
     }

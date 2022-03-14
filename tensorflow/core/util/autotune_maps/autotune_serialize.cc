@@ -74,8 +74,8 @@ ConvMapProto ConvMapToProto(
       }
     }
 
-    sorted_map.insert(std::make_pair(
-        autotune_maps_utils::SerializeProtoDeterministic(params_proto), kv));
+    sorted_map.emplace(
+        autotune_maps_utils::SerializeProtoDeterministic(params_proto), kv);
   }
 
   for (auto const &p : sorted_map) {

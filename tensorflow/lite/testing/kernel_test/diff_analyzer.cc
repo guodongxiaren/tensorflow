@@ -71,7 +71,7 @@ TfLiteStatus Populate(const string& filename,
       fprintf(stderr, "Expected <name>:<value>, got %s", content.c_str());
       return kTfLiteError;
     }
-    tensors->insert(std::make_pair(parts[0], Split<float>(parts[1], ",")));
+    tensors->emplace(parts[0], Split<float>(parts[1], ","));
   }
 
   file.close();
